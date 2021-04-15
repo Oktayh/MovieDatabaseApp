@@ -1,10 +1,14 @@
 package com.example.moviedatabaseapp.db;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
+
+import com.example.moviedatabaseapp.CustomModel;
 
 public class DBHelper extends SQLiteOpenHelper {
     Context context;
@@ -24,18 +28,33 @@ public class DBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-
-        String query = "CREATE TABLE " + TABLE_NAME + " (" + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                COLUMN_NAME + "TEXT, " +
-                COLUMN_GENRE + "TEXT, " +
-                COLUMN_YEAR + "INTEGER);";
-        db.execSQL(query);
+        String create_table = "CREATE TABLE " + TABLE_NAME + "(" + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," + COLUMN_NAME + " TEXT," + COLUMN_GENRE + " TEXT," + COLUMN_YEAR + " INTEGER)";
+        String query = "CREATE TABLE " + TABLE_NAME + "(" + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
+                COLUMN_NAME + " TEXT, " +
+                COLUMN_GENRE + " TEXT, " +
+                COLUMN_YEAR + " INTEGER);";
+        db.execSQL(create_table);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
         onCreate(db);
+    }
+    public boolean addMovie(CustomModel customModel){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+
+        values.put(COLUMN_NAME,customModel.getName());
+        values.put(COLUMN_GENRE,customModel.getGenra());
+        values.put(COLUMN_YEAR,customModel.getYear());
+
+
+        long result = db.insert(TABLE_NAME,null, values);
+        if(result == -1){return false;}
+        else{return true;}
 
     }
+
+
 }
