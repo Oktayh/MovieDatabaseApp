@@ -29,8 +29,16 @@ public class AddActivity extends AppCompatActivity {
             public void onClick(View v) {
                 DBHelper dbHelper = new DBHelper(AddActivity.this);
                 CustomModel customModel;
+                try {
+                    customModel = new CustomModel(-1,name.getText().toString(),genre.getText().toString(),Integer.parseInt(year.getText().toString()));
+                    Toast.makeText(AddActivity.this,customModel.toString(),Toast.LENGTH_LONG).show();
+                }
+                catch (Exception e){
+                    Toast.makeText(AddActivity.this,"Missing Requirement",Toast.LENGTH_LONG).show();
+                    customModel = new CustomModel(-1,"error","error",0);
+                }
 
-                customModel = new CustomModel(-1,name.getText().toString(),genre.getText().toString(),Integer.parseInt(year.getText().toString()));
+                /*customModel = new CustomModel(-1,name.getText().toString(),genre.getText().toString(),Integer.parseInt(year.getText().toString()));*/
                 boolean success = dbHelper.addMovie(customModel);
                 Toast.makeText(AddActivity.this, "Success= "+success, Toast.LENGTH_SHORT).show();
             }

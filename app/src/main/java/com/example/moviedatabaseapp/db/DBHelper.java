@@ -2,13 +2,19 @@ package com.example.moviedatabaseapp.db;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.widget.Toast;
+import android.widget.Toolbar;
 
 import androidx.annotation.Nullable;
 
+import com.example.moviedatabaseapp.CustomAdapter;
 import com.example.moviedatabaseapp.CustomModel;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class DBHelper extends SQLiteOpenHelper {
     Context context;
@@ -29,10 +35,6 @@ public class DBHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         String create_table = "CREATE TABLE " + TABLE_NAME + "(" + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," + COLUMN_NAME + " TEXT," + COLUMN_GENRE + " TEXT," + COLUMN_YEAR + " INTEGER)";
-        String query = "CREATE TABLE " + TABLE_NAME + "(" + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
-                COLUMN_NAME + " TEXT, " +
-                COLUMN_GENRE + " TEXT, " +
-                COLUMN_YEAR + " INTEGER);";
         db.execSQL(create_table);
     }
 
@@ -56,5 +58,25 @@ public class DBHelper extends SQLiteOpenHelper {
 
     }
 
+    public List<CustomModel> getMovie(){
+        List<CustomModel> cModel = new ArrayList<>();
+        String query = "SELECT * FROM " + TABLE_NAME;
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(query,null);
+        if (cursor.moveToFirst()){
+            while (cursor.moveToNext()){
+                int movieID = cursor.getInt(0);
+                String movieName = cursor.getString(1);
+                String movieGenre = cursor.getString(2);
+                int movieYear = cursor.getInt(3);
+                CustomModel newModel = new CustomModel(movieID,movieName,movieGenre,movieYear);
+                cModel.add(newModel);
+            }
 
-}
+        }else{}
+
+        cursor.close();
+        db.close();
+        return cModel;
+
+}}

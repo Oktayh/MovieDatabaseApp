@@ -13,10 +13,10 @@ public class CustomModel {
 
     }
 
-    public CustomModel(int id, String name, String genra, int year) {
+    public CustomModel(int id, String name, String genre, int year) {
         this.id = id;
         this.name = name;
-        this.genra = genra;
+        this.genra = genre;
         this.year = year;
     }
 
