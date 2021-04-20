@@ -3,7 +3,7 @@ package com.example.moviedatabaseapp;
 import androidx.annotation.NonNull;
 
 public class CustomModel {
-
+    private String status;
     private int id;
     private String name;
     private String genra;
@@ -13,9 +13,10 @@ public class CustomModel {
 
     }
 
-    public CustomModel(int id, String name, String genre, int year) {
+    public CustomModel(int id, String name, String genre, int year,String status) {
         this.id = id;
         this.name = name;
+        this.status = status;
         this.genra = genre;
         this.year = year;
     }
@@ -27,6 +28,10 @@ public class CustomModel {
 
     public String getName() {
         return name;
+    }
+
+    public String getStatus() {
+        return status;
     }
 
     public String getGenra() {

@@ -42,6 +42,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
         holder.movie_name.setText(models.get(position).getName());
         holder.movie_genre.setText(models.get(position).getGenra());
         holder.movie_year.setText(String.valueOf(models.get(position).getYear()));
+        holder.movie_status.setText(String.valueOf(models.get(position).getStatus()));
         GradientDrawable magnitudeCircle = (GradientDrawable) holder.movie_img.getBackground();
         // Get the appropriate background color based on the current earthquake magnitude
         int Color = getColor(context);
@@ -57,9 +58,10 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
 
     public class CustomViewHolder extends RecyclerView.ViewHolder {
 
-        TextView movie_name,movie_genre,movie_year,movie_img;
+        TextView movie_name,movie_genre,movie_year,movie_img,movie_status;
         public CustomViewHolder(@NonNull View itemView) {
             super(itemView);
+            movie_status = (TextView) itemView.findViewById(R.id.status);
             movie_name =(TextView) itemView.findViewById(R.id.txt_name);
             movie_genre = (TextView)itemView.findViewById(R.id.txt_genre);
             movie_year = (TextView)itemView.findViewById(R.id.txt_year);

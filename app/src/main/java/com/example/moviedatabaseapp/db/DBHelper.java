@@ -26,6 +26,7 @@ public class DBHelper extends SQLiteOpenHelper {
     private static final String COLUMN_NAME = "name";
     private static final String COLUMN_GENRE = "genre";
     private static final String COLUMN_YEAR = "year";
+    private static final String COLUMN_STATUS = "status";
 
     public DBHelper(@Nullable Context context) {
         super(context, DATABASE_NAME, null, VERSION);
@@ -34,7 +35,8 @@ public class DBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String create_table = "CREATE TABLE " + TABLE_NAME + "(" + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," + COLUMN_NAME + " TEXT," + COLUMN_GENRE + " TEXT," + COLUMN_YEAR + " INTEGER)";
+        String create_table = "CREATE TABLE " + TABLE_NAME + "(" + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+                + COLUMN_NAME + " TEXT," + COLUMN_GENRE + " TEXT," + COLUMN_YEAR + " INTEGER," + COLUMN_STATUS + " TEXT)";
         db.execSQL(create_table);
     }
 
@@ -50,6 +52,7 @@ public class DBHelper extends SQLiteOpenHelper {
         values.put(COLUMN_NAME,customModel.getName());
         values.put(COLUMN_GENRE,customModel.getGenra());
         values.put(COLUMN_YEAR,customModel.getYear());
+        values.put(COLUMN_STATUS,customModel.getStatus());
 
 
         long result = db.insert(TABLE_NAME,null, values);
@@ -69,7 +72,8 @@ public class DBHelper extends SQLiteOpenHelper {
                 String movieName = cursor.getString(1);
                 String movieGenre = cursor.getString(2);
                 int movieYear = cursor.getInt(3);
-                CustomModel newModel = new CustomModel(movieID,movieName,movieGenre,movieYear);
+                String movieStatus = cursor.getString(4);
+                CustomModel newModel = new CustomModel(movieID,movieName,movieGenre,movieYear,movieStatus);
                 cModel.add(newModel);
             }
 

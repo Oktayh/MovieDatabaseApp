@@ -58,16 +58,70 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/genre_movie" />
 
+    <RadioGroup
+        android:id="@+id/radioGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/year_movie">
+
+        <RadioButton
+            android:id="@+id/completed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="2dp"
+            android:background="@drawable/selectorradiobtn"
+            android:button="@android:color/transparent"
+            android:elevation="3dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:text="Completed"
+            android:textColor="@drawable/selectortxtcolor"
+            android:textStyle="bold" />
+
+        <RadioButton
+            android:id="@+id/plantowatch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="2dp"
+            android:background="@drawable/selectorradiobtn"
+            android:button="@android:color/transparent"
+            android:elevation="3dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:text="Plan to"
+            android:textColor="@drawable/selectortxtcolor"
+            android:textStyle="bold" />
+
+        <RadioButton
+            android:id="@+id/ongoing"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/selectorradiobtn"
+            android:button="@android:color/transparent"
+            android:elevation="3dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:text="On Going"
+            android:textColor="@drawable/selectortxtcolor"
+            android:textStyle="bold" />
+
+
+    </RadioGroup>
+
     <Button
         android:id="@+id/btn_add"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="24dp"
         android:text="Add Movie!"
         android:textAllCaps="false"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/year_movie" />
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
