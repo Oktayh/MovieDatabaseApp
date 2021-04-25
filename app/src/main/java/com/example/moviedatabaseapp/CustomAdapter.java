@@ -1,11 +1,14 @@
 package com.example.moviedatabaseapp;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.drawable.GradientDrawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -21,6 +24,7 @@ import static java.security.AccessController.getContext;
 public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomViewHolder> {
 
     private List<CustomModel> models;
+    private Activity activity;
     Context context;
 
     public CustomAdapter( Context context, List<CustomModel> models) {
@@ -28,6 +32,11 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
         this.models = models;
     }
 
+    public CustomAdapter(Context context,Activity activity, List<CustomModel> models) {
+        this.models = models;
+        this.activity = activity;
+        this.context = context;
+    }
 
     @NonNull
     @Override
@@ -44,10 +53,21 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
         holder.movie_year.setText(String.valueOf(models.get(position).getYear()));
         holder.movie_status.setText(String.valueOf(models.get(position).getStatus()));
         GradientDrawable magnitudeCircle = (GradientDrawable) holder.movie_img.getBackground();
-        // Get the appropriate background color based on the current earthquake magnitude
         int Color = getColor(context);
-        // Set the color on the magnitude circle
         magnitudeCircle.setColor(Color);
+        holder.list_item.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context,UpdateMovieActivity.class);
+                intent.putExtra("id_movie",String.valueOf(models.get(position).getId()));
+                intent.putExtra("name_movie",models.get(position).getName());
+                intent.putExtra("movie_genre",models.get(position).getGenra());
+                intent.putExtra("movie_year",String.valueOf(models.get(position).getYear()));
+                activity.startActivityForResult(intent,1);
+
+
+            }
+        });
 
     }
 
@@ -57,7 +77,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
     }
 
     public class CustomViewHolder extends RecyclerView.ViewHolder {
-
+        LinearLayout list_item;
         TextView movie_name,movie_genre,movie_year,movie_img,movie_status;
         public CustomViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -66,6 +86,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
             movie_genre = (TextView)itemView.findViewById(R.id.txt_genre);
             movie_year = (TextView)itemView.findViewById(R.id.txt_year);
             movie_img = (TextView) itemView.findViewById(R.id.imageView2);
+            list_item = (LinearLayout) itemView.findViewById(R.id.list_item);
 
         }
     }

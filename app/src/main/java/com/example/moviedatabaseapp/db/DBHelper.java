@@ -83,4 +83,24 @@ public class DBHelper extends SQLiteOpenHelper {
         db.close();
         return cModel;
 
-}}
+}
+
+    public void updateMovie(String mId, String mName, String mGenre, String mYear, String mStatus) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+
+        values.put(COLUMN_NAME,mName);
+        values.put(COLUMN_GENRE,mGenre);
+        values.put(COLUMN_YEAR,mYear);
+        values.put(COLUMN_STATUS,mStatus);
+
+        long result = db.update(TABLE_NAME, values, "name=?", new String[]{mId});
+        if(result == -1){
+            Toast.makeText(context, "Failed", Toast.LENGTH_SHORT).show();
+        }else {
+            Toast.makeText(context, "Updated Successfully!", Toast.LENGTH_SHORT).show();
+        }
+
+
+    }
+}

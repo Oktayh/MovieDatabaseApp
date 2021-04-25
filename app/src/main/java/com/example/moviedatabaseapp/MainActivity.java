@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
 
         dbHelper = new DBHelper(MainActivity.this);
         System.out.println(dbHelper.getMovie());
-        CustomAdapter customAdapter = new CustomAdapter(MainActivity.this,dbHelper.getMovie());
+        CustomAdapter customAdapter = new CustomAdapter(MainActivity.this,MainActivity.this,dbHelper.getMovie());
         recyclerView.setAdapter(customAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this));
     }

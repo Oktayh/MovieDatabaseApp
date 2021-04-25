@@ -9,10 +9,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MovieDatabaseApp">
-        <activity android:name=".AddActivity"
+        <activity android:name=".UpdateMovieActivity"></activity>
+        <activity
+            android:name=".AddActivity"
             android:label="Add New Movie"
-            android:parentActivityName=".MainActivity">
-        </activity>
+            android:parentActivityName=".MainActivity"></activity>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

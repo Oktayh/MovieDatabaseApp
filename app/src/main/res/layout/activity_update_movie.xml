@@ -9,10 +9,10 @@
     tools:context=".AddActivity">
 
     <EditText
-        android:id="@+id/name_movie"
+        android:id="@+id/name_movie_u"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="110dp"
+        android:layout_marginTop="80dp"
         android:background="@drawable/editview_radius"
         android:drawableStart="@drawable/ic_movie"
         android:drawablePadding="10dp"
@@ -26,7 +26,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/genre_movie"
+        android:id="@+id/genre_movie_u"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -40,10 +40,10 @@
         android:textSize="25sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/name_movie" />
+        app:layout_constraintTop_toBottomOf="@+id/name_movie_u" />
 
     <EditText
-        android:id="@+id/year_movie"
+        android:id="@+id/year_movie_u"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -57,20 +57,20 @@
         android:textSize="25sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/genre_movie" />
+        app:layout_constraintTop_toBottomOf="@+id/genre_movie_u" />
 
     <RadioGroup
-        android:id="@+id/radioGroup"
+        android:id="@+id/radioGroup_u"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/year_movie">
+        app:layout_constraintTop_toBottomOf="@+id/year_movie_u">
 
         <RadioButton
-            android:id="@+id/plantowatch"
+            android:id="@+id/plantowatch_u"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="2dp"
@@ -84,7 +84,7 @@
             android:textStyle="bold" />
 
         <RadioButton
-            android:id="@+id/ongoing"
+            android:id="@+id/ongoing_u"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/selectorradiobtn"
@@ -97,7 +97,7 @@
             android:textStyle="bold" />
 
         <RadioButton
-            android:id="@+id/completed"
+            android:id="@+id/completed_u"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="2dp"
@@ -114,18 +114,33 @@
     </RadioGroup>
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btn_add"
+        android:id="@+id/btn_update_u"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:backgroundTint="@null"
         android:background="@drawable/shapeaddbtn"
-        android:text="Add Movie!"
+        android:backgroundTint="@null"
+        android:text="Update Movie!"
         android:textAllCaps="false"
         android:textColor="@color/white"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup_u" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_delete_u"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/shapedeletebtn"
+        android:backgroundTint="@null"
+        android:text="Delete Movie!"
+        android:textAllCaps="false"
+        android:textColor="@android:color/white"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_update_u" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
